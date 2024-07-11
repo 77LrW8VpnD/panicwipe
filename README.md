@@ -2,7 +2,7 @@
 
 ### Disclaimer
 ```
-		     THE PROJECT ISNT FINISHED YET.
+THE PROJECT ISN'T FINISHED YET, THERE ARE SOME ERRORS STILL.
 
 
 I do not claim responsability of any data loss neither of any data manipulation
