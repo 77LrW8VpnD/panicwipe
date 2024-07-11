@@ -57,7 +57,7 @@ python setup.py install
 
 ## TODO
 - User deletion module.
-- Clean, delete unnecesary code and optimize the code.
+- Clean, delete unnecesary code and optimize everything.
 - Add auto home deletion and extra dir deletion with extra-dirs in json
 - Add gif of the execution in [execution overview](#execution-overview)
 - Add a way to check the json to see if it works or hands any errors
