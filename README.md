@@ -40,7 +40,7 @@ python setup.py install
 	"verbose":true, // Disable or enable program output
 	"user":"elmo", // User to delete
 	"shutdown":false, // Shutdown after wipe
-	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete those directories contents
+	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete extra directories
 	"self-destruction":true, // Self destruct panicwipe after wiping
 	"overtime":3 //The times to overwrite the file
 }
