@@ -69,22 +69,19 @@ if confirmation == 'YES':
             if os.path.exists(dire) == False:
                 print(f"{Fore.RED}Directory {dire} doesn't exist")
                 break
-            elif len(os.listdir(dire)) == 0: # Quitar
-                drdd(dire) # Quitar
-                break # Quitar
             elif tc < 10:
                 for rd, d, f in os.walk(dire):
-                    # If the directory is emptyxx
                     if not os.listdir(rd):
                         drdd(rd)
                         break
                     for fn in f:
-                        threading.Thread(target=rodd(os.path.join(rd,fn))).start()
-                    if len(os.listdir(dire)) > len([None for exion in excluded if exion in os.listdir(dire)]): # PERMA LOOP SI HAY OTRO ARCHIVO EXCLUIDO DENTRO DE OTRA CARPETA, TENGO QUE HACER QUE ELIMINE TODO LO QUE HAY DENTRO DE ESO DIRECTORIO DANDO IGUAL SI ES CONTENIDO EXCLUIDO O NO, PARA ESO LE TENGO QUE METER MODO AUTODESTRUCCION
-                        hasthingsinside = True
-                    else:
-                        hasthingsinside = False
-                        print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
+                        if len(os.listdir(dire)) != 0:
+                            hasthingsinside = True
+                             threading.Thread(target=rodd(os.path.join(rd,fn))).start()
+                        else:
+                            hasthingsinside = False
+                            print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
+                             break
         hasthingsinside = True
 elif confirmation == 'NO':
     print(f'{Fore.RED}Exiting!')
