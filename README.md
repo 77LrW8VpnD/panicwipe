@@ -5,6 +5,8 @@
 ```
 I do not claim responsability of any data loss neither of any data manipulation
 for evidence deletion if a crime is commited.
+
+This is a personal project just play with python.
 ```
 
 <p align="center">
@@ -15,6 +17,7 @@ for evidence deletion if a crime is commited.
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [To do](#TODO)
+- [Execution overview](#execution-overview)
 
 ## Installation
 - It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file, you can change this editing the .zshrc, .bashrc, or the one that you have.
@@ -37,6 +40,12 @@ python setup.py install
 	"overtime":3 //The times to overwrite the file
 }
 ```
+
+## Execution overview
+
+
+
+
 
 ## TODO
 - User deletion module.
