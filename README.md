@@ -16,6 +16,12 @@ I do not claim responsability of any data loss neither of any data manipulation 
 - [To do](#-TODO)
 
 ## Installation
+```
+pip install -r requirements.txt
+python setup.py install
+```
+
+## Configuration
  - Json example w/explanations:
 ```
 {
