@@ -17,7 +17,7 @@ for evidence deletion if a crime is commited.
 - [To do](#TODO)
 
 ## Installation
-- It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file
+- It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file, you can change this editing the .zshrc, .bashrc, or the one that you have.
 ```
 pip install -r requirements.txt
 python setup.py install
@@ -39,5 +39,5 @@ python setup.py install
 ```
 
 ## TODO
-- User deletion module
-- Clean, delete unnecesary code and optimize the code
+- User deletion module.
+- Clean, delete unnecesary code and optimize the code.
