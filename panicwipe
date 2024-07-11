@@ -29,7 +29,7 @@ def delete_user():
     with open('/etc/passwd', 'r') as f:
         ud = f.readlines()
         for user in ud:
-            user_clean = user.split(':')[-2]
+            user_home = user.split(':')[-2]
             if user_clean == ConfigParser('user').getcfgvalue():
                 print(user_clean)
 
