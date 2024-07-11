@@ -1,5 +1,4 @@
 # Panicwipe
-## Delete quickly and securely all the files from given directories
 
 ### Disclaimer
 ```
@@ -18,6 +17,13 @@ This is a personal project just play with python.
 - [Configuration](#configuration)
 - [To do](#TODO)
 - [Execution overview](#execution-overview)
+- [Description](#description)
+ 
+## Description
+```
+Delete quickly and securely all the files from given directories by overwriting the data inside, renaming and then deleting the file.
+Also renames and deletes the directories.
+```
 
 ## Installation
 - It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file, you can change this editing the .zshrc, .bashrc, or the one that you have.
@@ -51,3 +57,4 @@ python setup.py install
 - Clean, delete unnecesary code and optimize the code.
 - Add auto home deletion and extra dir deletion with extra-dirs in json
 - Add gif of the execution in [execution overview](#execution-overview)
+- Add a way to check the json to see if it works or hands any errors
