@@ -24,7 +24,7 @@ class ConfigParser:
 def shush():
     sys.stdout = open(os.devnull, 'w')
 
-# Delete users 
+# Delete users homes
 def delete_user():
     with open('/etc/passwd', 'r') as f:
         ud = f.readlines()
