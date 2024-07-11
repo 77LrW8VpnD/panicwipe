@@ -34,9 +34,8 @@ python setup.py install
 	"verbose":true, // Disable or enable program output
 	"user":"elmo", // User to delete
 	"shutdown":false, // Shutdown after wipe
-	"dirs":"/home/elmo/example,/home/elmo/example2", // Delete those directories contents
-	"excludes":"panicwipe", // Tell de program not to delete those files
-	"delete_rootdir":true, // Remove this option
+	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete those directories contents
+	"self-destruction":true, // Self destruct panicwipe after wiping
 	"overtime":3 //The times to overwrite the file
 }
 ```
@@ -50,3 +49,5 @@ python setup.py install
 ## TODO
 - User deletion module.
 - Clean, delete unnecesary code and optimize the code.
+- Add auto home deletion and extra dir deletion with extra-dirs in json
+- Add gif of the execution in [execution overview](#execution-overview)
