@@ -2,6 +2,9 @@
 
 ### Disclaimer
 ```
+		     THE PROJECT ISNT FINISHED YET.
+
+
 I do not claim responsability of any data loss neither of any data manipulation
 for evidence deletion if a crime is commited.
 
