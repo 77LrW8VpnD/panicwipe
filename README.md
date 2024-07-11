@@ -61,3 +61,4 @@ python setup.py install
 - Add auto home deletion and extra dir deletion with extra-dirs in json
 - Add gif of the execution in [execution overview](#execution-overview)
 - Add a way to check the json to see if it works or hands any errors
+- Deleted marked lines
