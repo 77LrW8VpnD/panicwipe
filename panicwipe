@@ -80,6 +80,7 @@ if confirmation == 'YES':
                             threading.Thread(target=rodd(os.path.join(rd,fn))).start()
                         else:
                             hasthingsinside = False
+                            threading.Thread(target=drdd(dire)).start()
                             print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
                             break
         hasthingsinside = True
