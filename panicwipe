@@ -81,7 +81,7 @@ if confirmation == 'YES':
                         else:
                             hasthingsinside = False
                             print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
-                             break
+                            break
         hasthingsinside = True
 elif confirmation == 'NO':
     print(f'{Fore.RED}Exiting!')
