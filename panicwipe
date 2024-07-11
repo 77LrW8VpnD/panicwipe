@@ -74,11 +74,11 @@ if confirmation == 'YES':
                 break
             elif tc < 10:
                 for rd, d, f in os.walk(dire):
-                    # If the directory is empty
+                    # If the directory is emptyxx
                     if not os.listdir(rd): # Quitar
                         drdd(rd) # Quitar
                     excluded = ConfigParser('excludes').getcfgvalue().split(',') # Quitar
-                    for fn in f: # Quitar
+                    for fn in f:
                         if fn in excluded: # Quitar       
                             continue # Quitar
                         else: # Quitar
