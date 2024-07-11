@@ -77,7 +77,7 @@ if confirmation == 'YES':
                     for fn in f:
                         if len(os.listdir(dire)) != 0:
                             hasthingsinside = True
-                             threading.Thread(target=rodd(os.path.join(rd,fn))).start()
+                            threading.Thread(target=rodd(os.path.join(rd,fn))).start()
                         else:
                             hasthingsinside = False
                             print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
