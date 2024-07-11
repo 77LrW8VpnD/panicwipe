@@ -12,7 +12,7 @@ This is a personal project just play with python.
 ```
 
 <p align="center">
-  <img src="https://github.com/77LrW8VpnD/panicwipe/blob/main/rsz_panicwipe-transformed.png"/>
+  <img src="https://github.com/77LrW8VpnD/panicwipe/blob/main/panicwipe_logo.png"/>
 </p>
 
 ## Table of contents
