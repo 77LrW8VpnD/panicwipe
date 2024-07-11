@@ -11,12 +11,12 @@ I do not claim responsability of any data loss neither of any data manipulation 
 </p>
 
 ## Table of contents
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [To do](#-TODO)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [To do](#TODO)
 
 ## Installation
-- It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#-configuration) file
+- It is neccesary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file
 ```
 pip install -r requirements.txt
 python setup.py install
