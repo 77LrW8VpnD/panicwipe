@@ -1,0 +1,102 @@
+#!/bin/python3
+
+import os, threading, random, sys, json, curses
+from colorama import Fore, init
+from django.utils.crypto import get_random_string
+init(autoreset=True)
+
+# Variables
+tc = 0
+hasthingsinside = True
+
+## Where the core resides ##
+
+# Parse configs keys:[]
+class ConfigParser:
+    def __init__(self, jk):
+        self.jk = jk
+
+    def getcfgvalue(self):
+        with open(os.environ['PANICCONFIG'],'r') as cf:
+            return json.loads(cf.read())[self.jk]
+
+# Make everything quiet
+def shush():
+    sys.stdout = open(os.devnull, 'w')
+
+# Delete users 
+def delete_user():
+    with open('/etc/passwd', 'r') as f:
+        ud = f.readlines()
+        for user in ud:
+            user_clean = user.split(':')[0]
+            if user_clean == ConfigParser('user').getcfgvalue():
+                print(user_clean)
+
+# To generate a random file name
+def randomstring():
+    return get_random_string(length=8, allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890')
+
+# R.O.D.D(Rename, overwrite, delete, destroy)
+def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
+    tc =+ 1
+    fn2 = randomstring()
+    with open(file, 'rb+') as lf:
+        size = lf.tell()
+    with open(file, 'wb+') as f:
+        for times in range(noo):
+            f.write(os.urandom(size))
+    os.rename(file, fn2)
+    os.remove(fn2)
+    print(f'{Fore.BLUE}File {file} deleted.')
+    tc =- 1
+
+# DR.D.D(Directory rename, delete, destruction)
+def drdd(rd):
+    if not os.listdir(rd):
+        rfn = randomstring()
+        os.rename(rd, rfn)
+        os.rmdir(rfn)
+        print(f'{Fore.BLUE}Directory {rd} deleted.')
+
+# The confirmation to wipe everything
+confirmation = input(f'{Fore.YELLOW}Sure you wanna delete every single file? YES/NO {Fore.WHITE}')
+if ConfigParser('verbose').getcfgvalue() is False: shush()
+if confirmation == 'YES':
+    dirs = ConfigParser('dirs').getcfgvalue().split(',')
+    for dire in dirs:
+        while hasthingsinside == True:
+            if os.path.exists(dire) == False:
+                print(f"{Fore.RED}Directory {dire} doesn't exist")
+                break
+            elif tc < 10:
+                if os.path.exists(dire) and len(os.listdir(dire)) > 0:
+                    for rd, d, f in os.walk(dire):
+                        # Check if the directory is
+                        if not os.listdir(rd):
+                            drdd(rd)
+                        excluded = ConfigParser('excludes').getcfgvalue().split(',')
+                        for fn in f:
+                            if fn in excluded:                   
+                                continue
+                            else:
+                                threading.Thread(target=rodd(os.path.join(rd,fn))).start()
+                        if len(os.listdir(dire)) > len([None for exion in excluded if exion in os.listdir(dire)]):
+                            hasthingsinside = True
+                        else:
+                            hasthingsinside = False
+                            print(f'{Fore.GREEN}{dire} has been wiped!')
+                else:
+                    if ConfigParser('delete_rootdir').getcfgvalue():
+                        drdd(dire)
+                        break
+                    else:
+                        print(f'{Fore.YELLOW}{dire} is empty, make delete_rootdir true to remove it.')
+                        break
+        hasthingsinside = True
+elif confirmation == 'NO':
+    print(f'{Fore.RED}Exiting!')
+    exit()
+
+print(f'{Fore.GREEN}The panic has gone away, as everything got wiped to dust, its time to take a nap and rest what you can.')
+if ConfigParser('shutdown').getcfgvalue(): os.system('poweroff')
