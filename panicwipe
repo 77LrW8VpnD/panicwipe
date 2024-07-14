@@ -88,5 +88,5 @@ elif confirmation == 'NO':
     print(f'{Fore.RED}Exiting!')
     exit()
 
-print(f'{Fore.GREEN}The panic has gone away, as everything got wiped to dust, its time to take a nap and rest what you can.')
+print(f'{Fore.GREEN}The panic has gone away, as everything got wiped to dust, its time to take a nap and rest while you can.')
 if ConfigParser('shutdown').getcfgvalue(): os.system('poweroff')
