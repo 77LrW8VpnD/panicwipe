@@ -53,3 +53,4 @@ panicwipe
 ## TODO
 - Clean, delete unnecesary code and optimize everything.
 - Add gif of the execution in [execution overview](#execution-overview)
+- Create setup.py
