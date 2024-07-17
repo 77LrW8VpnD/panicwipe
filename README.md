@@ -40,7 +40,6 @@ panicwipe
 ```
 {
 	"verbose":true, // Disable or enable program output
-	"user":"elmo", // User to delete
 	"shutdown":false, // Shutdown after wipe
 	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete extra directories
 	"self-destruction":true, // Self destruct panicwipe after wiping
