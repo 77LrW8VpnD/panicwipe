@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import os, threading, random, sys, json, fcntl
+import os, threading, random, sys, json
 from colorama import Fore, init
 from django.utils.crypto import get_random_string
 init(autoreset=True)
