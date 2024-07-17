@@ -26,7 +26,6 @@ Also renames and deletes the directories.
 ```
 
 ## Installation
-- It is necessary to have a system variable named PANICCONFIG with the complete path of the [configuraton](#configuration) file, you can change this editing the .zshrc, .bashrc, or the one that you have.
 ```
 sudo python setup.py install
 panicwipe
