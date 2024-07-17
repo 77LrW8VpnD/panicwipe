@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import os, threading, random, sys, json
+import os, threading, random, sys, json, fcntl
 from colorama import Fore, init
 from django.utils.crypto import get_random_string
 init(autoreset=True)
@@ -43,17 +43,21 @@ def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
         print(f'{Fore.BLUE}File {file} deleted.')
     except FileNotFoundError:
         os.system(f'rm {file}')
-        print(f'{Fore.YELLOW}File {file} not found.')
+        print(f'{Fore.YELLOW}Locked file {file} deleted.')
         pass
     tc =- 1
 
 # DR.D.D(Directory rename, delete, destruction)
 def drdd(rd):
     if not os.listdir(rd):
-        rfn = randomstring()
-        os.rename(rd, rfn)
-        os.rmdir(rfn)
-        print(f'{Fore.BLUE}Directory {rd} deleted.')
+        try:
+            rfn = randomstring()
+            os.rename(rd, rfn)
+            os.rmdir(rfn)
+            print(f'{Fore.BLUE}Directory {rd} deleted.')
+        except OSError:
+            print(f'{Fore.RED}Directory {rd} is currently being used, probably.')
+            pass
 
 # The confirmation to wipe everything
 confirmation = input(f'{Fore.YELLOW}Sure you wanna delete every single file? YES/NO {Fore.WHITE}')
