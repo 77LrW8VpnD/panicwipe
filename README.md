@@ -5,7 +5,7 @@
 I do not claim responsability of any data loss neither of any data manipulation
 for evidence deletion if a crime is commited.
 
-This is a personal project just play with python.
+This is a personal project made just to play with python and secure file deletion.
 ```
 
 <p align="center">
