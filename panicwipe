@@ -24,6 +24,15 @@ class ConfigParser:
 def shush():
     sys.stdout = open(os.devnull, 'w')
 
+# Change username and home just in case
+def anonymize_username():
+    user, run = os.getusername(), randomstring()
+    for file in "shadow,passwd".split(','):
+        with open(f'/etc/{file}','w') as f:
+            for line in f.readlines():
+                if os.getusername() in line.split(':'): # Continuar aqui
+
+
 # To generate a random file name
 def randomstring():
     return get_random_string(length=8, allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890')
@@ -94,5 +103,7 @@ else:
     exit()
 
 print(f"{Fore.GREEN}The panic has gone away, as everything got wiped to dust, it's time to rest.")
+
+anonymize_username()
 
 if ConfigParser('shutdown').getcfgvalue(): os.system('poweroff')
