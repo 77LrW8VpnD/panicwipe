@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import os, threading, random, sys, json, curses
+import os, threading, random, sys, json, fcntl
 from colorama import Fore, init
 from django.utils.crypto import get_random_string
 init(autoreset=True)
@@ -8,6 +8,7 @@ init(autoreset=True)
 # Variables
 tc = 0
 hasthingsinside = True
+sysus = []
 
 ## Where the core resides ##
 
@@ -17,21 +18,12 @@ class ConfigParser:
         self.jk = jk
 
     def getcfgvalue(self):
-        with open(os.environ['PANICCONFIG'],'r') as cf:
+        with open('/opt/config/panicwipe/config.json','r') as cf:
             return json.loads(cf.read())[self.jk]
 
 # Make everything quiet
 def shush():
     sys.stdout = open(os.devnull, 'w')
-
-# Delete users homes
-def delete_user():
-    with open('/etc/passwd', 'r') as f:
-        ud = f.readlines()
-        for user in ud:
-            user_home = user.split(':')[-2]
-            if user_clean == ConfigParser('user').getcfgvalue():
-                print(user_clean)
 
 # To generate a random file name
 def randomstring():
@@ -41,14 +33,19 @@ def randomstring():
 def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
     tc =+ 1
     fn2 = randomstring()
-    with open(file, 'rb+') as lf:
-        size = lf.tell()
-    with open(file, 'wb+') as f:
-        for times in range(noo):
-            f.write(os.urandom(size))
-    os.rename(file, fn2)
-    os.remove(fn2)
-    print(f'{Fore.BLUE}File {file} deleted.')
+    try:
+        with open(file, 'rb+') as lf:
+            size = lf.tell()
+        with open(file, 'wb+') as f:
+            for times in range(noo):
+                f.write(os.urandom(size))
+        os.rename(file, fn2)
+        os.remove(fn2)
+        print(f'{Fore.BLUE}File {file} deleted.')
+    except FileNotFoundError:
+        os.system(f'rm {file}')
+        print(f'{Fore.YELLOW}File {file} not found.')
+        pass
     tc =- 1
 
 # DR.D.D(Directory rename, delete, destruction)
@@ -63,13 +60,18 @@ def drdd(rd):
 confirmation = input(f'{Fore.YELLOW}Sure you wanna delete every single file? YES/NO {Fore.WHITE}')
 if ConfigParser('verbose').getcfgvalue() is False: shush()
 if confirmation == 'YES':
-    dirs = ConfigParser('dirs').getcfgvalue().split(',')
+    dirs = ConfigParser('extra-dirs').getcfgvalue().split(',')
+    with open('/etc/passwd', 'r') as f:
+        for users in f.readlines():
+            home = users.split(':')[5]
+            if home.startswith('/home') or home.startswith('/root'):
+                dirs.append(home)
     for dire in dirs:
         while hasthingsinside == True:
             if os.path.exists(dire) == False:
                 print(f"{Fore.RED}Directory {dire} doesn't exist")
                 break
-            elif tc < 10:
+            elif tc < ConfigParser('threads').getcfgvalue():
                 for rd, d, f in os.walk(dire):
                     if not os.listdir(rd):
                         drdd(rd)
@@ -84,9 +86,10 @@ if confirmation == 'YES':
                             print(f'{Fore.GREEN}{dire} has been wiped and deleted!')
                             break
         hasthingsinside = True
-elif confirmation == 'NO':
+else:
     print(f'{Fore.RED}Exiting!')
     exit()
 
-print(f'{Fore.GREEN}The panic has gone away, as everything got wiped to dust, its time to take a nap and rest while you can.')
+print(f"{Fore.GREEN}The panic has gone away, as everything got wiped to dust, it's time to rest.")
+
 if ConfigParser('shutdown').getcfgvalue(): os.system('poweroff')
