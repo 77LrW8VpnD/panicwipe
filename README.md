@@ -21,8 +21,7 @@ This is a personal project made just to play with python and secure file deletio
  
 ## Description
 ```
-Delete quickly and securely all the files from given directories by
-overwriting the data inside, renaming and then deleting the file.
+Delete quickly and securely all the files from given directories by overwriting the data inside, renaming and then deleting the file.
 Also renames and deletes the directories.
 ```
 
