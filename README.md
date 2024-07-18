@@ -40,15 +40,20 @@ panicwipe
 	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete extra directories
 	"self-destruction":true, // Self destruct panicwipe after wiping
 	"overtime":3 //The times to overwrite the file
-	"threads":20 //The number of threads to use
+	"threads":50 //The number of threads to use
 }
 ```
 
 ## Execution overview
+![Alt](https://github.com/77LrW8VpnD/panicwipe/blob/main/preview.gif)
 
-
-
-
+##### Execution details
+```
+Executed on a poorly optimized vm that couldn't even handle a single firefox instance.
+The program was configured with 50 threads.
+All the files deleted were 44GB in total.
+```
+- Execution time: 32 seconds
 
 ## TODO
 - Clean, delete unnecesary code and optimize everything.
