@@ -1,0 +1,8 @@
+{
+	"verbose":true,
+	"shutdown":false,
+	"extra-dirs":"/var/log",
+	"self-destruction":true,
+	"overtime":3,
+	"threads":50
+}
