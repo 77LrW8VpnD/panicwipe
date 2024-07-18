@@ -26,7 +26,7 @@ Also renames and deletes the directories.
 
 ## Installation
 ```
-sudo python setup.py install
+sh install.sh
 sudo panicwipe
 ```
 
