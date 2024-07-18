@@ -44,7 +44,7 @@ sudo panicwipe
 }
 ```
 
-## Execution overview
+## Execution preview
 ![alt text](https://github.com/77LrW8VpnD/panicwipe/blob/main/preview.gif)
 
 ##### Execution details
