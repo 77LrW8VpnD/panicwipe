@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import os, threading, random, sys, json, fcntl
+import os, threading, random, sys, json
 from colorama import Fore, init
 from django.utils.crypto import get_random_string
 init(autoreset=True)
@@ -11,34 +11,32 @@ hasthingsinside = True
 
 ## Where the core resides ##
 
-# Parse configs keys:[]
-class ConfigParser:
-    def __init__(self, jk):
-        self.jk = jk
-
-    def getcfgvalue(self):
-        with open('/opt/config/panicwipe/config.json','r') as cf:
-            return json.loads(cf.read())[self.jk]
+# Get json key values
+def getcfgvalue(jkey):
+    with open('/opt/config/panicwipe/config.json','r') as cf:
+        return json.loads(cf.read())[jkey]
 
 # Make everything quiet
 def shush():
     sys.stdout = open(os.devnull, 'w')
 
-# Change username and home just in case
+# Change username and home name
 def anonymize_username():
-    user, run = os.getusername(), randomstring()
+    user, run = os.getlogin(), randomstring()
+    print(f'{Fore.BLUE}Renaming {user} to {run}.')
     for file in "shadow,passwd".split(','):
-        with open(f'/etc/{file}','w') as f:
-            for line in f.readlines():
-                if os.getusername() in line.split(':'): # Continuar aqui
-
+        with open(f'/etc/{file}','r+') as f:
+            ul = f.read()
+            f.seek(0)
+            ul = ul.replace(user,run)
+            f.write(ul)
 
 # To generate a random file name
 def randomstring():
     return get_random_string(length=8, allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890')
 
 # R.O.D.D(Rename, overwrite, delete, destroy)
-def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
+def rodd(file, noo=getcfgvalue('overtime')):
     tc =+ 1
     fn2 = randomstring()
     try:
@@ -51,7 +49,13 @@ def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
         os.remove(fn2)
         print(f'{Fore.BLUE}File {file} deleted.')
     except FileNotFoundError:
-        os.system(f'rm {file}')
+        os.rename(file, fn2)
+        os.remove(fn2)
+        print(f'{Fore.YELLOW}Locked file {file} deleted.')
+        pass
+    except PermissionError:
+        os.rename(file, fn2)
+        os.remove(fn2)
         print(f'{Fore.YELLOW}Locked file {file} deleted.')
         pass
     tc =- 1
@@ -59,20 +63,20 @@ def rodd(file, noo=ConfigParser('overtime').getcfgvalue()):
 # DR.D.D(Directory rename, delete, destruction)
 def drdd(rd):
     if not os.listdir(rd):
-        try:
-            rfn = randomstring()
-            os.rename(rd, rfn)
-            os.rmdir(rfn)
-            print(f'{Fore.BLUE}Directory {rd} deleted.')
-        except OSError:
-            print(f'{Fore.RED}Directory {rd} is currently being used, probably.')
-            pass
+        rfn = randomstring()
+        os.rename(rd, rfn)
+        os.rmdir(rfn)
+        print(f'{Fore.BLUE}Directory {rd} deleted.')
 
 # The confirmation to wipe everything
 confirmation = input(f'{Fore.YELLOW}Sure you wanna delete every single file? YES/NO {Fore.WHITE}')
-if ConfigParser('verbose').getcfgvalue() is False: shush()
-if confirmation == 'YES':
-    dirs = ConfigParser('extra-dirs').getcfgvalue().split(',')
+if getcfgvalue('verbose') is False: shush()
+if os.getuid() != 0:
+    print(f'{Fore.RED}Execute with sudo!')
+    exit() 
+elif confirmation == 'YES':
+    dirs = getcfgvalue('extra-dirs').split(',')
+    os.chdir('/')
     with open('/etc/passwd', 'r') as f:
         for users in f.readlines():
             home = users.split(':')[5]
@@ -83,7 +87,7 @@ if confirmation == 'YES':
             if os.path.exists(dire) == False:
                 print(f"{Fore.RED}Directory {dire} doesn't exist")
                 break
-            elif tc < ConfigParser('threads').getcfgvalue():
+            elif tc < getcfgvalue('threads'):
                 for rd, d, f in os.walk(dire):
                     if not os.listdir(rd):
                         drdd(rd)
@@ -102,8 +106,7 @@ else:
     print(f'{Fore.RED}Exiting!')
     exit()
 
-print(f"{Fore.GREEN}The panic has gone away, as everything got wiped to dust, it's time to rest.")
-
 anonymize_username()
-
-if ConfigParser('shutdown').getcfgvalue(): os.system('poweroff')
+if getcfgvalue('self-destruction'): rodd('/bin/panicwipe')
+print(f"{Fore.GREEN}The panic has gone away, as everything got wiped to dust, it's time to rest.")
+if getcfgvalue('shutdown'): os.system('poweroff')
