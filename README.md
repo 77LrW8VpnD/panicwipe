@@ -38,7 +38,7 @@ sudo panicwipe
 	"shutdown":false, // Shutdown after wipe
 	"extra-dirs":"/home/elmo/example,/home/elmo/example2", // Delete extra directories
 	"self-destruction":true, // Self destruct panicwipe after wiping
-	"overtime":3 //The times to overwrite the file
+	"overtime":3, //The times to overwrite the file
 	"threads":50 //The number of threads to use
 }
 ```
