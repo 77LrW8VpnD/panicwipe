@@ -15,7 +15,6 @@ This is a personal project made just to play with python and secure file deletio
 ## Table of contents
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [To do](#TODO)
 - [Execution overview](#execution-overview)
 - [Description](#description)
  
@@ -54,6 +53,3 @@ The program was configured with 50 threads.
 All the files deleted were 44GB in total.
 ```
 - Execution time: 32 seconds
-
-## TODO
-- Create setup.py(https://docs.python.org/3.11/distutils/setupscript.html)
