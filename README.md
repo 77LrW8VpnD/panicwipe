@@ -28,7 +28,7 @@ Also renames and deletes the directories.
 ## Installation
 ```
 sudo python setup.py install
-panicwipe
+sudo panicwipe
 ```
 
 ## Configuration
@@ -56,6 +56,4 @@ All the files deleted were 44GB in total.
 - Execution time: 32 seconds
 
 ## TODO
-- Clean, delete unnecesary code and optimize everything.
-- Add gif of the execution in [execution overview](#execution-overview)
 - Create setup.py(https://docs.python.org/3.11/distutils/setupscript.html)
