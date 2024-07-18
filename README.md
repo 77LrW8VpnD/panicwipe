@@ -45,7 +45,7 @@ panicwipe
 ```
 
 ## Execution overview
-![Alt Text](https://github.com/77LrW8VpnD/panicwipe/blob/main/preview.gif)
+![alt text](https://github.com/77LrW8VpnD/panicwipe/blob/main/preview.gif)
 
 ##### Execution details
 ```
