@@ -1,5 +1,5 @@
 echo "Installing and seting up everything."
-sudo pip install colorama django --break-system-warranty
+sudo pip install colorama django --break-system-packages
 rm ./preview.gif ./panicwipe_logo.png ./README.md
 sudo mv panicwipe /bin/panicwipe
 sudo chmod +x /bin/panicwipe
