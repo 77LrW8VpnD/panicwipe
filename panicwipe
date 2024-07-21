@@ -6,8 +6,8 @@ from django.utils.crypto import get_random_string
 init(autoreset=True)
 
 # Variables
-tc = 0
-hasthingsinside = True
+tc: int = 0
+hasthingsinside: bool = True
 
 ## Where the core resides ##
 
@@ -17,11 +17,11 @@ def getcfgvalue(jkey):
         return json.loads(cf.read())[jkey]
 
 # Make everything quiet
-def shush():
+def shush() -> None:
     sys.stdout = open(os.devnull, 'w')
 
 # Change username and home name
-def anonymize_username():
+def anonymize_username() -> None:
     user, run = os.getlogin(), randomstring()
     print(f'{Fore.BLUE}Renaming {user} to {run}.')
     for file in "shadow,passwd".split(','):
@@ -32,11 +32,11 @@ def anonymize_username():
             f.write(ul)
 
 # To generate a random file name
-def randomstring():
+def randomstring() -> str:
     return get_random_string(length=8, allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890')
 
 # R.O.D.D(Rename, overwrite, delete, destroy)
-def rodd(file, noo=getcfgvalue('overtime')):
+def rodd(file, noo=getcfgvalue('overtime')) -> None:
     tc =+ 1
     fn2 = randomstring()
     try:
@@ -61,7 +61,7 @@ def rodd(file, noo=getcfgvalue('overtime')):
     tc =- 1
 
 # DR.D.D(Directory rename, delete, destruction)
-def drdd(rd):
+def drdd(rd) -> None:
     if not os.listdir(rd):
         rfn = randomstring()
         os.rename(rd, rfn)
